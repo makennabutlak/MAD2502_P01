@@ -1,0 +1,20 @@
+import numpy as np
+
+def get_barycentric_coordinates(triangle_coordinates: np.array, point_coordinates: np.array) -> np.array:
+    x1 = triangle_coordinates[0, 0]
+    x2 = triangle_coordinates[0, 1]
+    x3 = triangle_coordinates[0, 2]
+    y1 = triangle_coordinates[1, 0]
+    y2 = triangle_coordinates[1, 1]
+    y3 = triangle_coordinates[1, 2]
+
+    x = point_coordinates[0]
+    y = point_coordinates[1]
+
+    #got this by solving for each element of the barycentric coordinates with te system
+    barycentric_1 = ((y2 - y3)*(x - x3) + (x3 - x2)*(y - y3))/((y2 - y3)*(x1 - x3) + (x3 - x2)*(y1 - y3))
+    barycentric_2 = ((y3 - y1)*(x - x3) + (x1 - x3)*(y - y3))/((y2 - y3)*(x1 - x3) + (x3 - x2)*(y1 - y3))
+    barycentric_3 = 1 - barycentric_1 - barycentric_2
+
+    return [barycentric_1, barycentric_2, barycentric_3]
+
