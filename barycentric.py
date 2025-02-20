@@ -31,7 +31,7 @@ def get_cartesian_coordinates(triangle_coordinates: np.array, barycentric_coordi
     b3 = barycentric_coordinates[2]
 
     x = b1*x1 + b2*x2 + b3*x3
-    y = b1*y1 + b2*y2 + b3*x3
+    y = b1*y1 + b2*y2 + b3*y3
 
     return [x, y]
 
