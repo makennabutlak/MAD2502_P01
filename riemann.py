@@ -1,11 +1,5 @@
 import numpy as np
 
-#def left_endpoint(x_vals: np.ndarray, func: np.ufunc) -> float:
-#    sum_left_endpoint = 0
-#    for i in range(len(x_vals)-1):
-#        sum_left_endpoint += func(x_vals[i])* (x_vals[i+1] - x_vals[i])
-#    return sum_left_endpoint
-
 def left_endpoint(x_vals: np.array, func: np.ufunc)-> float:
     difference= np.diff(x_vals)
     return np.sum(func(x_vals[:-1])*difference)
