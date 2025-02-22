@@ -22,4 +22,3 @@ def simpson(x_vals: np.ndarray, func: np.ufunc) -> float:
             +4 * np.sum(func(x_vals[1:-1:2]))
             +2 * np.sum(func(x_vals[2:-2:2]))
             + func(x_vals[-1])
-)
