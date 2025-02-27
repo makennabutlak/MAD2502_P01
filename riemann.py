@@ -38,16 +38,27 @@ def trapezoid(x_vals: np.ndarray, func: np.ufunc) -> float:
 
 
 def simpson(x_vals: np.ndarray, func: np.ufunc) -> float:
-    
+    """
+    Approximates the integral of a function using Simpson's Rule.
+
+    :param x_vals: A numpy array of x values defining the integration interval.
+    :param func: A NumPy universal function (ufunc) representing the function to integrate.
+    :return: The approximate integral value using Simpson's Rule.
+    """
+    # Determine the number of intervals (must be even for Simpson's Rule)
     n = len(x_vals) - 1
+    # If n is odd, remove the last x value to make n even
     if n % 2 == 1:
-        x_vals = x_vals[:-1]
-        n-=1
-        
+        x_vals = x_vals[:-1]# Remove the last point
+        n -= 1  # Update the number of intervals
+      
+       # Compute the step size (dx) based on the first and last x values 
     dx = (x_vals[-1]-x_vals[0])/n
+     # Apply Simpson's Rule formula:
+    # Integral ≈ (dx/3) * [ f(x0) + 4*f(x1) + 2*f(x2) + 4*f(x3) + ... + f(xn) ]
     return (dx/3)* (
-            func(x_vals[0])
-            +4 * np.sum(func(x_vals[1:-1:2]))
-            +2 * np.sum(func(x_vals[2:-2:2]))
-            + func(x_vals[-1])
-)
+            func(x_vals[0]) # First term: f(x0)
+        + 4 * np.sum(func(x_vals[1:-1:2]))  # Sum of odd-indexed terms multiplied by 4
+        + 2 * np.sum(func(x_vals[2:-2:2]))  # Sum of even-indexed terms (except first & last) multiplied by 2
+        + func(x_vals[-1])  # Last term: f(xn)
+    )
